@@ -1,0 +1,60 @@
+[
+  {
+    "endpoint": "/v1/listings",
+    "category": "filters",
+    "documented": "Inactive, expired and withdrawn listings are excluded server side",
+    "actual": "Endpoint returned 1083 records where is_live=false",
+    "how_found": "Filtering the downloaded listings by is_live===false.",
+    "impact": "Applications display inactive listings to users unless manually filtered.",
+    "evidence": [
+      "SQU-5001676",
+      "100-5003165",
+      "DWE-5003578",
+      "DWE-5002882",
+      "ZER-5004068",
+      "ZER-5004254",
+      "SQU-5002474",
+      "MAG-5003923",
+      "DWE-5000422",
+      "SQU-5002316",
+      "ZER-5000505",
+      "SQU-5001474",
+      "DWE-5004848",
+      "MAG-5003462",
+      "SQU-5001371",
+      "ZER-5001566",
+      "ZER-5001325",
+      "MAG-5005069",
+      "100-5000892",
+      "MAG-5000766"
+    ]
+  },
+  {
+    "endpoint": "/v1/listings",
+    "category": "pagination",
+    "documented": "The API metadata specifies total: 4796.",
+    "actual": "Pagination successfully retrieved 5100 records, which conflicts with the API's own 'total' parameter.",
+    "how_found": "Compared the API response's metadata object (total: 4796) against the actual accumulated list length (5100).",
+    "impact": "Relying on the API's total count for pagination bounds or progress bars will cause truncation or inaccuracies.",
+    "evidence": [
+      "Metadata total: 4796",
+      "Actual downloaded: 5100"
+    ]
+  },
+  {
+    "endpoint": "/v1/listings",
+    "category": "filters",
+    "documented": "Supports filtering by project_id",
+    "actual": "The project_id filter is completely ignored. The endpoint returns 50 arbitrary results regardless of project_id.",
+    "how_found": "Directly querying /v1/listings?project_id=P50016 and observing that returned listings contain entirely different project IDs.",
+    "impact": "Impossible to fetch listings belonging to a specific project directly from the API.",
+    "evidence": {
+      "requested_project_id": "P50016",
+      "returned_project_ids": [
+        "P50001",
+        "P50002",
+        "P50003"
+      ]
+    }
+  }
+]
