@@ -7,10 +7,12 @@ export default function DashboardLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMinimized, setIsMinimized] = useState(false);
+  const userEmail = localStorage.getItem('user_email') || 'guest@ivy.homes';
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('api_key');
+    localStorage.removeItem('user_email');
     navigate('/login');
   };
 
@@ -86,6 +88,12 @@ export default function DashboardLayout() {
         </nav>
 
         <div className="p-4 border-t border-white/50 bg-white/30 backdrop-blur-sm space-y-2">
+          {!isMinimized && (
+            <div className="px-4 py-2 mb-2 bg-indigo-50/50 rounded-lg border border-indigo-100">
+              <p className="text-xs text-indigo-400 font-semibold uppercase tracking-wider">Logged In As</p>
+              <p className="text-sm font-bold text-slate-700 truncate">{userEmail}</p>
+            </div>
+          )}
           <button
             onClick={handleLogout}
             title={isMinimized ? 'Log out' : ''}

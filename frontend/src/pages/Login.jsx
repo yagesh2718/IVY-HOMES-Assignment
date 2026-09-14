@@ -20,6 +20,7 @@ export default function Login() {
     try {
       const apiKey = import.meta.env.IVY_API_KEY || import.meta.env.VITE_API_KEY || '';
       localStorage.setItem('api_key', apiKey);
+      localStorage.setItem('user_email', email);
       const res = await api.post('/auth/login', { email, password });
       if (res.data.access_token) {
         localStorage.setItem('access_token', res.data.access_token);

@@ -93,10 +93,6 @@ export default function Projects() {
       const priceMin = parseFloat(item.price_min) || 0;
       if (filters.minPrice && priceMin < parseFloat(filters.minPrice)) return false;
       if (filters.maxPrice && priceMin > parseFloat(filters.maxPrice)) return false;
-      if (filters.is_live) {
-        const isLiveBool = filters.is_live === 'true';
-        if (item.is_live !== isLiveBool) return false;
-      }
 
       return true;
     });
@@ -217,37 +213,21 @@ export default function Projects() {
         </div>
 
         <div className="md:col-span-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Developer Name</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Building className="h-4 w-4 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  name="developer_name"
-                  value={filters.developer_name}
-                  onChange={handleFilterChange}
-                  className="pl-10 block w-full rounded-xl border border-slate-200/60 shadow-none bg-slate-50/50 hover:bg-indigo-50 hover:border-indigo-300 focus:bg-white shadow-sm focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 sm:text-sm py-2.5 transition-all"
-                  placeholder="e.g. Prestige, Sobha..."
-                />
-              </div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Developer Name</label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Building className="h-4 w-4 text-gray-400" />
             </div>
-            
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-              <CustomSelect
-                name="is_live"
-                value={filters.is_live}
-                onChange={handleFilterChange}
-                placeholder="Any"
-                theme="blue"
-                options={[
-                  { value: '', label: 'Any' },
-                  { value: 'true', label: 'Active' },
-                  { value: 'false', label: 'Inactive' }
-                ]}
-              />
-            </div>
+            <input
+              type="text"
+              name="developer_name"
+              value={filters.developer_name}
+              onChange={handleFilterChange}
+              className="pl-10 block w-full rounded-xl border border-slate-200/60 shadow-none bg-slate-50/50 hover:bg-indigo-50 hover:border-indigo-300 focus:bg-white shadow-sm focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 sm:text-sm py-2.5 transition-all"
+              placeholder="e.g. Prestige, Sobha..."
+            />
+          </div>
+        </div>
       </div>
 
       {error && (
@@ -296,14 +276,30 @@ export default function Projects() {
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4 text-sm text-slate-600 bg-slate-50/80 p-3 rounded-lg border border-slate-100/50">
-                        <div>
-                          <span className="block text-gray-400 text-xs mb-1">Developer</span>
-                          <span className="font-medium truncate block">{item.developer_name}</span>
+                      <div className="grid grid-cols-2 gap-3 text-sm text-slate-600 bg-slate-50/80 p-3 rounded-lg border border-slate-100/50">
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Developer</span>
+                          <span className="font-medium truncate">{item.developer_name}</span>
                         </div>
-                        <div>
-                          <span className="block text-gray-400 text-xs mb-1">Units</span>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Units</span>
                           <span className="font-medium">{item.total_units}</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Towers</span>
+                          <span className="font-medium truncate">{item.total_towers || 'N/A'}</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Floors</span>
+                          <span className="font-medium truncate">{item.total_floors || 'N/A'}</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Possession</span>
+                          <span className="font-medium truncate">{item.possession_date ? new Date(item.possession_date).toLocaleDateString('en-US', {month: 'short', year: 'numeric'}) : 'N/A'}</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">RERA ID</span>
+                          <span className="font-medium truncate">{item.rera_number || 'N/A'}</span>
                         </div>
                       </div>
                     </div>

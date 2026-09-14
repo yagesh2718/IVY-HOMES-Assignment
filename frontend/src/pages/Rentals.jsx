@@ -394,7 +394,7 @@ export default function Rentals() {
                     className="block bg-white/80 backdrop-blur-sm rounded-3xl shadow-[0_2px_10px_rgb(0,0,0,0.04)] border border-slate-200/60 overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 relative group h-full flex flex-col"
                   >
                     <div className="p-5">
-                      <div className="flex justify-between items-start mb-2 pr-10">
+                      <div className="flex justify-between items-start mb-2 pr-2">
                         <div>
                           <h3 className="text-lg font-bold text-gray-900 line-clamp-1">{item.title || item.apartment_name}</h3>
                           <p className="text-sm text-gray-500 flex items-center mt-1">
@@ -402,21 +402,40 @@ export default function Rentals() {
                             <span className="capitalize">{item.locality}</span>
                           </p>
                         </div>
+                        <span className={`px-2.5 py-1 text-xs font-bold rounded-md whitespace-nowrap ${item.is_live ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`}>
+                          {item.is_live ? 'Live' : 'Inactive'}
+                        </span>
                       </div>
                       
-                      <div className="mb-4">
+                      <div className="mb-4 mt-2">
                         <span className="text-2xl font-bold text-blue-600">{formatPrice(item.price)}<span className="text-sm text-gray-500 font-normal">/mo</span></span>
                         <div className="text-xs text-gray-500 mt-1">Deposit: {formatPrice(item.deposit)}</div>
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-4 text-sm text-slate-600 bg-slate-50/80 p-3 rounded-lg border border-slate-100/50">
-                        <div className="flex items-center">
-                          <HomeIcon className="h-4 w-4 mr-2 text-gray-400" />
-                          <span>{item.bedroom} BHK</span>
+                      <div className="grid grid-cols-2 gap-3 text-sm text-slate-600 bg-slate-50/80 p-3 rounded-lg border border-slate-100/50">
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Configuration</span>
+                          <span className="font-medium">{item.bedroom} BHK, {item.bathroom} Bath</span>
                         </div>
-                        <div className="flex items-center">
-                          <Maximize2 className="h-4 w-4 mr-2 text-gray-400" />
-                          <span>{item.carpet_area} sqft</span>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Area</span>
+                          <span className="font-medium">{item.carpet_area} sqft</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Furnishing</span>
+                          <span className="font-medium capitalize">{item.furnishing}</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Maintenance</span>
+                          <span className="font-medium">{item.maintenance ? `₹${item.maintenance.toLocaleString()}/mo` : 'Included'}</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Type</span>
+                          <span className="font-medium capitalize">{item.property_type || 'N/A'}</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Facing</span>
+                          <span className="font-medium capitalize">{item.facing_direction || 'N/A'}</span>
                         </div>
                       </div>
                     </div>

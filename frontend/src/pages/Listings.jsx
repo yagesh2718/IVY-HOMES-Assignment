@@ -493,25 +493,48 @@ export default function Listings() {
                           </div>
                         </div>
 
-                        <div className="mb-5 flex items-center justify-between">
-                          <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-600">
-                            {formatPrice(listing.price)}
-                          </span>
-                          <span className={`px-2.5 py-1 text-xs font-bold rounded-md ${listing.is_live ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`}>
-                            {listing.is_live ? 'Live' : 'Inactive'}
-                          </span>
-                        </div>
+                          <div className="mb-5 flex items-center justify-between">
+                            <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-600">
+                              {formatPrice(listing.price)}
+                            </span>
+                            <div className="flex gap-2">
+                              {listing.is_verified && (
+                                <span className="px-2.5 py-1 text-xs font-bold rounded-md bg-blue-100 text-blue-800">
+                                  ✓ Verified
+                                </span>
+                              )}
+                              <span className={`px-2.5 py-1 text-xs font-bold rounded-md ${listing.is_live ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`}>
+                                {listing.is_live ? 'Live' : 'Inactive'}
+                              </span>
+                            </div>
+                          </div>
 
-                        <div className="grid grid-cols-2 gap-3 text-sm font-medium text-slate-600">
-                          <div className="flex items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                            <HomeIcon className="h-4 w-4 mr-2.5 text-indigo-400" />
-                            <span>{listing.bedroom} BHK</span>
+                          <div className="grid grid-cols-2 gap-3 text-sm font-medium text-slate-600 bg-slate-50/80 p-3 rounded-lg border border-slate-100/50">
+                            <div className="flex flex-col">
+                              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Configuration</span>
+                              <span className="font-medium text-slate-700">{listing.bedroom} BHK, {listing.bathroom} Bath</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Area</span>
+                              <span className="font-medium text-slate-700">{listing.carpet_area} sqft</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Floor</span>
+                              <span className="font-medium text-slate-700">{listing.floor} / {listing.total_floors}</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Maintenance</span>
+                              <span className="font-medium text-slate-700">{listing.maintenance ? `₹${listing.maintenance.toLocaleString()}/mo` : 'Included'}</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Balcony</span>
+                              <span className="font-medium text-slate-700">{listing.balcony || 'None'}</span>
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Parking</span>
+                              <span className="font-medium text-slate-700">{listing.covered_parking ? `${listing.covered_parking} Spots` : 'None'}</span>
+                            </div>
                           </div>
-                          <div className="flex items-center bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                            <Maximize2 className="h-4 w-4 mr-2.5 text-indigo-400" />
-                            <span>{listing.carpet_area} sqft</span>
-                          </div>
-                        </div>
                       </div>
                       <div className="bg-slate-50/80 backdrop-blur-sm px-6 py-4 border-t border-slate-100 flex justify-between items-center group-hover:bg-sky-50/50 transition-colors">
                         <span className="text-xs font-bold text-slate-500 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-200/60 shadow-[0_2px_10px_rgb(0,0,0,0.04)] truncate max-w-[120px]">
