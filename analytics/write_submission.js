@@ -6,7 +6,7 @@ function generateSubmission() {
     const part3Findings = JSON.parse(fs.readFileSync(path.join(__dirname, 'findings.json'), 'utf8'));
     const template = JSON.parse(fs.readFileSync(path.join(__dirname, '../submission.template.json'), 'utf8'));
 
-    template.api_key = process.env.VITE_API_KEY || "IVY26-GMW3-F8BQ-7D1P";
+    template.api_key = process.env.VITE_API_KEY || "";
     template.candidate = {
         name: "Antigravity Agent",
         email: "antigravity@google.com",
