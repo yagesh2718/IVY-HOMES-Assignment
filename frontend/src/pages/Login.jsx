@@ -5,7 +5,7 @@ import { Lock, AlertCircle, Mail, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Login() {
-  const [email, setEmail] = useState('demo1@ivy.homes');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -51,7 +51,7 @@ export default function Login() {
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/30 blur-[120px]" />
           <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-blue-500/20 blur-[130px]" />
         </div>
-        
+
         <div className="relative z-10">
           <div className="flex items-center gap-4">
             <div className="h-16 w-16 flex items-center justify-center bg-white rounded-xl p-1.5 shadow-lg">
@@ -60,18 +60,18 @@ export default function Login() {
             <span className="text-white text-4xl font-extrabold tracking-tight">Ivy Homes</span>
           </div>
         </div>
-        
+
         <div className="relative z-10 mb-20">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="text-6xl md:text-7xl font-extrabold text-white leading-tight mb-6"
           >
-            Real Estate Analytics <br/>
+            Real Estate Analytics <br />
             <span className="text-indigo-300">Reimagined.</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -92,7 +92,7 @@ export default function Login() {
           <span className="text-slate-900 text-2xl font-extrabold tracking-tight">Ivy Homes</span>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -106,9 +106,9 @@ export default function Login() {
               Please enter your details to access your portal.
             </p>
           </div>
-          
+
           {error && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               className="bg-red-50 border border-red-100 rounded-xl p-4 mb-6"
@@ -139,7 +139,7 @@ export default function Login() {
                 />
               </div>
             </div>
-            
+
             <div>
               <div className="mb-2">
                 <label className="block text-sm font-semibold text-slate-700">Password</label>

@@ -19,7 +19,7 @@ export default function DashboardLayout() {
       {/* Sidebar - Glassmorphism */}
       <div className={`w-full ${isMinimized ? 'md:w-24' : 'md:w-64'} bg-white/70 backdrop-blur-2xl border-r border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col z-20 transition-all duration-300 ease-in-out relative`}>
         <div className={`py-8 ${isMinimized ? 'px-4' : 'px-8'} transition-all duration-300 relative`}>
-          <button 
+          <button
             onClick={() => setIsMinimized(!isMinimized)}
             title={isMinimized ? 'Expand sidebar' : 'Collapse sidebar'}
             className="absolute top-8 right-[-14px] md:flex hidden items-center justify-center w-7 h-7 bg-blue-600 border border-blue-600 shadow-sm rounded-full text-white hover:bg-blue-700 transition-all z-50"
@@ -39,7 +39,7 @@ export default function DashboardLayout() {
           </div>
           {!isMinimized && <p className="text-sm font-medium text-slate-500 tracking-wide overflow-hidden whitespace-nowrap">REAL ESTATE</p>}
         </div>
-        
+
         <nav className={`flex-1 space-y-1.5 mt-2 overflow-y-auto ${isMinimized ? 'px-3' : 'px-4'}`}>
           {[
             { to: '/listings', icon: Home, label: 'Listings' },
@@ -50,28 +50,27 @@ export default function DashboardLayout() {
           ].map((item) => {
             const isActive = location.pathname === item.to;
             const Icon = item.icon;
-            
+
             return (
               <Link
                 key={item.to}
                 to={item.to}
                 title={isMinimized ? item.label : ""}
-                className={`relative flex items-center rounded-xl transition-all duration-300 group ${isMinimized ? 'justify-center py-3' : 'px-4 py-3.5'} ${
-                  isActive 
-                    ? 'text-indigo-700 font-semibold shadow-sm' 
+                className={`relative flex items-center rounded-xl transition-all duration-300 group ${isMinimized ? 'justify-center py-3' : 'px-4 py-3.5'} ${isActive
+                    ? 'text-indigo-700 font-semibold shadow-sm'
                     : 'text-slate-600 hover:text-indigo-900 font-medium'
-                }`}
+                  }`}
               >
                 {/* Active Background Pill */}
                 {isActive && (
                   <motion.div
                     layoutId="active-pill"
-                    className="absolute inset-0 bg-white shadow-[0_2px_10px_rgb(0,0,0,0.04)] border border-slate-200/60 rounded-xl"
+                    className="absolute inset-0 bg-blue-200 shadow-[0_2px_10px_rgb(0,0,0,0.04)] border border-slate-200/60 rounded-xl"
                     initial={false}
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
-                
+
                 {/* Hover Background */}
                 {!isActive && (
                   <div className="absolute inset-0 bg-white/50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -85,9 +84,9 @@ export default function DashboardLayout() {
             );
           })}
         </nav>
-        
+
         <div className="p-4 border-t border-white/50 bg-white/30 backdrop-blur-sm space-y-2">
-          <button 
+          <button
             onClick={handleLogout}
             title={isMinimized ? 'Log out' : ''}
             className={`flex items-center ${isMinimized ? 'justify-center w-12 h-12 mx-auto' : 'w-full px-4 py-3'} text-red-600 bg-red-50 hover:bg-red-100 font-medium rounded-xl transition-all shadow-sm hover:shadow-md group`}
