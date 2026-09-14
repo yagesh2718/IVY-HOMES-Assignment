@@ -18,7 +18,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const apiKey = import.meta.env.VITE_API_KEY || '';
+      const apiKey = import.meta.env.IVY_API_KEY || import.meta.env.VITE_API_KEY || '';
       localStorage.setItem('api_key', apiKey);
       const res = await api.post('/auth/login', { email, password });
       if (res.data.access_token) {
